@@ -1,4 +1,3 @@
-// sw.js
 const cacheName = 'ps4hen-v1';
 const filesToCache = [
   '/',
