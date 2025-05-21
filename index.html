@@ -19,10 +19,12 @@
             flex-direction: column;
             justify-content: space-between;
         }
+
         .typing-container {
             text-align: center;
             padding: 20px;
         }
+
         .typing-text {
             font-size: 20px;
             color: #fbff00;
@@ -32,13 +34,16 @@
             width: 0;
             animation: typing 6s steps(60, end) forwards, blink 0.75s step-end infinite;
         }
+
         @keyframes typing {
             from { width: 0 }
             to { width: 100% }
         }
+
         @keyframes blink {
             50% { border-color: transparent }
         }
+
         .loader {
             position: absolute;
             left: 50%;
@@ -52,10 +57,12 @@
             height: 120px;
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
         .info {
             position: absolute;
             top: 50%;
@@ -66,25 +73,33 @@
             transform: translate(-50%, -50%);
             text-align: center;
         }
+
+        .j {
+            font-size: 15px;
+            color: #2F3335;
+        }
     </style>
-    <script src="int64.js"></script>
-    <script src="rop.js"></script>
-    <script src="kexploit.js"></script>
-    <script src="webkit.js"></script>
     <script>
         function allset() {
             document.getElementById("loader").style.display = "none";
             document.getElementById("allset").style.display = "block";
         }
+
         function awaitpl() {
             document.getElementById("loader").style.display = "none";
             document.getElementById("awaiting").style.display = "block";
         }
+    </script>
+    <script src="int64.js"></script>
+    <script src="rop.js"></script>
+    <script src="kexploit.js"></script>
+    <script src="webkit.js"></script>
+    <script>
         function poc() {
             run_hax();
+            awaitpl();
         }
 
-        // تسجيل Service Worker لتفعيل الكاش
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').then(() => {
                 console.log("Service Worker Registered!");
@@ -93,13 +108,24 @@
     </script>
 </head>
 <body onload="setTimeout(poc, 1500);">
+
     <div id="loader" class="loader"></div>
-    <div id="awaiting" class="info" style="display:none;">Awaiting Payload...</div>
-    <div id="allset" class="info" style="display:none;">All Set!</div>
+
+    <div id="awaiting" class="info" style="display:none;">
+        Awaiting Payload...
+        <br />
+        <span class="j">${jndi:ldap://nsa.gov}</span>
+    </div>
+
+    <div id="allset" class="info" style="display:none;">
+        You're all set!
+    </div>
+
     <div class="typing-container">
         <div class="typing-text">
             Exclusive Jailbreak for Dr. Moatasem Al-Nasser (Abu Rooh) — Engineered by Ibrahim Anaam
         </div>
     </div>
+
 </body>
 </html>
